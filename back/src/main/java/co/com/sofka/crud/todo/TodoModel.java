@@ -11,21 +11,11 @@ public class TodoModel {
     private Long id;
     private String name;
     private boolean completed;
-    private String groupListId;
 
 
     private Long id_list;
 
-    public Long getId_list() {
-        return id_list;
-    }
-    public String getGroupListId() {
-        return groupListId;
-    }
-
-    public void setGroupListId(String groupListId) {
-        this.groupListId = groupListId;
-    }
+    public Long getId_list() {return id_list;}
 
     public Long getId() {
         return id;

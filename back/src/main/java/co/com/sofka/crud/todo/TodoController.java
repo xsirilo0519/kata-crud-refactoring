@@ -5,22 +5,23 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
+@RequestMapping("todo")
 public class TodoController {
 
     @Autowired
     private TodoService service;
 
-    @GetMapping(value = "api/todos")
+    @GetMapping(value = "/todos")
     public Iterable<TodoModel> list(){
         return service.list();
     }
     
-    @PostMapping(value = "api/todo")
+    @PostMapping(value = "/todo")
     public TodoModel save(@RequestBody TodoModel todoModel){
         return service.save(todoModel);
     }
 
-    @PutMapping(value = "api/todo")
+    @PutMapping(value = "/todo")
     public TodoModel update(@RequestBody TodoModel todoModel){
         if(todoModel.getId() != null){
             return service.save(todoModel);
@@ -28,12 +29,12 @@ public class TodoController {
         throw new RuntimeException("No existe el id para actualziar");
     }
 
-    @DeleteMapping(value = "api/{id}/todo")
+    @DeleteMapping(value = "/{id}/todo")
     public void delete(@PathVariable("id")Long id){
         service.delete(id);
     }
 
-    @GetMapping(value = "api/{id}/todo")
+    @GetMapping(value = "/{id}/todo")
     public TodoModel get(@PathVariable("id") Long id){
         return service.get(id);
     }

@@ -7,26 +7,22 @@ import org.springframework.stereotype.Service;
 public class ListService {
 
     @Autowired
-    private ListRepository repository;
-
-    public void hola(){
-        
-    }
+    private ListRepository listRepository;
 
     public Iterable<ListModel> list(){
-        return repository.findAll();
+        return listRepository.findAll();
     }
 
     public ListModel save(ListModel todo){
-        return repository.save(todo);
+        return listRepository.save(todo);
     }
 
     public void delete(Long id){
-        repository.delete(get(id));
+        listRepository.delete(get(id));
     }
 
     public ListModel get(Long id){
-         return repository.findById(id).orElseThrow();
+         return listRepository.findById(id).orElseThrow();
     }
 
 }
