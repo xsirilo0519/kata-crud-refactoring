@@ -1,13 +1,15 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import ViewBoard from './Components/ViewBoard';
+import {listContext} from './Context/context'
 
 const HOST_API_TODO = "http://localhost:8080/todo";
 
 function App() {
+  const [list, setList]=useState([]);
   return (
-  <Fragment>
+  <listContext.Provider value={{list,setList}}>
   <ViewBoard/>
-  </Fragment>
+  </listContext.Provider>
   )
 }
 

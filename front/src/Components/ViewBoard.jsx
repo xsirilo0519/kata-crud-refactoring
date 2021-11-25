@@ -1,10 +1,12 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState,useContext } from 'react';
 import {getList,addList} from '../Controller/ListController'
 import ViewList from './ViewList';
+import {listContext} from '../Context/context'
 
-function ViewBoard(props) {
+function ViewBoard() {
+    const {list,setList}=useContext(listContext);
     const [input,setInput]=useState("");
-    const [list, setList]=useState([]);
+    //const [list, setList]=useState([]);
 
     useEffect(()=>{
     getList(setList)
@@ -12,12 +14,11 @@ function ViewBoard(props) {
 
     const addListCall=()=>{
         if(input!==""&&input[0]!==" "){
-            console.log(input.split(" ").length);
-            console.log("hola");
+            addList(input,list,setList)
         }
-        //addList(input,list,setList)
         setInput("")
     }
+
     return (
         <div>
             broard<br/>
