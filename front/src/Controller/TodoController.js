@@ -3,6 +3,7 @@ import axios from "axios";
 const HOST_API_TODO = "http://localhost:8080/todo";
 
 export const addTodo=async(input,todo,setTodo,id)=>{
+    if(input!==""&&input[0]!==" "){
     const todoModel={
         name:input,
         id_list:id
@@ -10,6 +11,7 @@ export const addTodo=async(input,todo,setTodo,id)=>{
     const aux= await axios.post(HOST_API_TODO+"/todo",todoModel).then(res=>{ return res.data})
     setTodo([...todo,aux])
     console.log("addtodo");
+    }
  }
 
  export const deleteTodo=async(id,todo,setTodo)=>{

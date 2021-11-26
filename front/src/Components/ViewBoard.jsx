@@ -3,9 +3,10 @@ import {getList,addList} from '../Controller/ListController'
 import ViewList from './ViewList';
 import {listContext} from '../Context/context'
 
-function ViewBoard() {
+function ViewBoard(props) {
     const {list,setList}=useContext(listContext);
     const [input,setInput]=useState("");
+    //const [list, setList]=useState([]);
 
     useEffect(()=>{
     getList(setList)
@@ -25,9 +26,9 @@ function ViewBoard() {
             <button onClick={addListCall}>Agregar</button>
             <br/>
             {
-                list.map((item,index)=>{
+                list.map((item)=>{
                     return(
-                    <Fragment key={index}> <ViewList item={item}/></Fragment>
+                    <Fragment key={item.id}> <ViewList item={item}/></Fragment>
                     )
                 })
             }

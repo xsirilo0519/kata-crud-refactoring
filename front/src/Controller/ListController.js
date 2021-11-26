@@ -9,13 +9,15 @@ export const getList=async(setList)=>{
 }
 
 export const addList=async(input,list,setList)=>{
+    if(input!==""&&input[0]!==" "){
     const listModel={
-        name:input
+        name:input,
+        todoModel:[]
     }
     const aux= await axios.post(HOST_API_LIST+"/lista",listModel).then(res=>{ return res.data})
     setList([...list,aux])
     console.log("addlista");
-
+    }
  }
 
  export const deleteList=async(id,list,setList)=>{
