@@ -2,6 +2,7 @@ import React,{useContext,useEffect,useState} from 'react';
 import {deleteList} from '../Controller/ListController'
 import {listContext} from '../Context/context'
 import ViewTodo from './ViewTodo';
+import { addTodo } from '../Controller/TodoController';
 
 function ViewList({item}) {
     const {list,setList}=useContext(listContext);
@@ -17,7 +18,12 @@ function ViewList({item}) {
     }
 
     const addTodoCall=()=>{
-        
+        addTodo(input,todo,setTodo,item.id)
+        setInput("")
+    }
+
+    const editSelectTodoCall=(item)=>{
+        console.log(item);
     }
 
     return (
@@ -28,14 +34,26 @@ function ViewList({item}) {
             <input type="text" value={input} onChange={(e)=>{setInput(e.target.value)}} />
             <button onClick={addTodoCall}>Agregar</button>
             <br/>
+      <table>
+        <thead>
+          <tr>
+            <td>ID</td>
+            <td>Nombre</td>
+            <td>¿Completo?</td>
+            <td></td>
+            <td></td>
+          </tr>
+        </thead>
+        <tbody>
             {
                 todo.map((item,index)=>{
-
                     return(
-                        <ViewTodo></ViewTodo>
+                        <ViewTodo item={item} todo={todo} setTodo={setTodo} editSelectTodoCall={editSelectTodoCall}></ViewTodo>
                     )
                 })
             }
+              </tbody>
+                        </table>
 
         </div>
     );

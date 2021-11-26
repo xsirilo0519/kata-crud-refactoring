@@ -11,8 +11,6 @@ public class TodoModel {
     private Long id;
     private String name;
     private boolean completed;
-
-
     private Long id_list;
 
     public Long getId_list() {return id_list;}

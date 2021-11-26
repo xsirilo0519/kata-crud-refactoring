@@ -16,12 +16,12 @@ public class ListController {
         return listservice.list();
     }
     
-    @PostMapping(value = "/todo")
+    @PostMapping(value = "/lista")
     public ListModel save(@RequestBody ListModel todo){
         return listservice.save(todo);
     }
 
-    @PutMapping(value = "/todo")
+    @PutMapping(value = "/lista")
     public ListModel update(@RequestBody ListModel todo){
         if(todo.getId() != null){
             return listservice.save(todo);
@@ -29,12 +29,12 @@ public class ListController {
         throw new RuntimeException("No existe el id para actualziar");
     }
 
-    @DeleteMapping(value = "/{id}/todo")
+    @DeleteMapping(value = "/{id}/lista")
     public void delete(@PathVariable("id")Long id){
         listservice.delete(id);
     }
 
-    @GetMapping(value = "/{id}/todo")
+    @GetMapping(value = "/{id}/lista")
     public ListModel get(@PathVariable("id") Long id){
         return listservice.get(id);
     }

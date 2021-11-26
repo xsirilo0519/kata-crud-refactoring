@@ -6,7 +6,6 @@ import {listContext} from '../Context/context'
 function ViewBoard() {
     const {list,setList}=useContext(listContext);
     const [input,setInput]=useState("");
-    //const [list, setList]=useState([]);
 
     useEffect(()=>{
     getList(setList)
