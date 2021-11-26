@@ -15,7 +15,7 @@ public class TodoController {
     public Iterable<TodoModel> list(){
         return service.list();
     }
-    
+
     @PostMapping(value = "/todo")
     public TodoModel save(@RequestBody TodoModel todoModel){
         return service.save(todoModel);
@@ -34,9 +34,5 @@ public class TodoController {
         service.delete(id);
     }
 
-    @GetMapping(value = "/{id}/todo")
-    public TodoModel get(@PathVariable("id") Long id){
-        return service.get(id);
-    }
 
 }

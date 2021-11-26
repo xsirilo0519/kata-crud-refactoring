@@ -3,20 +3,19 @@ package co.com.sofka.crud.list;
 import co.com.sofka.crud.todo.TodoDTO;
 import co.com.sofka.crud.todo.TodoModel;
 
-import javax.persistence.*;
 import java.util.List;
 
-@Entity
-public class ListModel {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ListDTO {
     private Long id;
-
     private String name;
+    private List<TodoDTO> TodoDTO;
 
-    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
-    @JoinColumn(name = "id_list")
-    private List<TodoModel> todoModel;
+    public ListDTO(Long id, String name, List<TodoDTO> TodoDTO) {
+        this.id = id;
+        this.name = name;
+        this.TodoDTO = TodoDTO;
+    }
+
 
     public Long getId() {
         return id;
@@ -34,11 +33,11 @@ public class ListModel {
         this.name = name;
     }
 
-    public List<TodoModel> getTodoModel() {
-        return todoModel;
+    public List<TodoDTO> getTodoModel() {
+        return TodoDTO;
     }
 
-    public void setTodoModel(List<TodoModel> todoModel) {
-        this.todoModel = todoModel;
+    public void setTodoModel(List<TodoDTO> TodoDTO) {
+        this.TodoDTO = TodoDTO;
     }
 }
