@@ -19,8 +19,8 @@ public class ListService {
                 List<ListDTO> listTodo= new ArrayList<ListDTO>();
                 listRepository.findAll()
                 .forEach(x->{
-                    List<TodoDTO> listTodo3=x.getTodoModel().stream().map(Y->new TodoDTO(Y.getId(),Y.getName(), Y.isCompleted(), Y.getId_list())).collect(Collectors.toList());
-                    listTodo.add(new ListDTO(x.getId(),x.getName(),listTodo3));
+                    List<TodoDTO> listTodoDTO=x.getTodoModel().stream().map(Y->new TodoDTO(Y.getId(),Y.getName(), Y.isCompleted(), Y.getId_list())).collect(Collectors.toList());
+                    listTodo.add(new ListDTO(x.getId(),x.getName(),listTodoDTO));
                 });
           return listTodo;
     }
@@ -37,7 +37,7 @@ public class ListService {
         listRepository.delete(get(id));
     }
 
-    public ListModel get(Long id){
+    private ListModel get(Long id){
          return listRepository.findById(id).orElseThrow();
     }
 
