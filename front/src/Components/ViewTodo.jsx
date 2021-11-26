@@ -22,7 +22,7 @@ function ViewTodo({item,todo,setTodo,editSelectTodoCall}) {
    }
     return (
    
-         <tr key={item.id} style={item.completed?style:null}>
+         <tr  style={item.completed?style:null}>
                         <td>{item.id}</td>
                         <td>{item.name}</td>
                         <td><input type="checkbox" defaultChecked={item.completed} onChange={() => onChange( item)}></input></td>

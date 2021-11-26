@@ -1,4 +1,4 @@
-import React,{useContext,useEffect,useState} from 'react';
+import React,{Fragment, useContext,useEffect,useState} from 'react';
 import {deleteList} from '../Controller/ListController'
 import {listContext} from '../Context/context'
 import ViewTodo from './ViewTodo';
@@ -9,10 +9,12 @@ function ViewList({item}) {
     const [input,setInput]=useState("");
     const [todo,setTodo]=useState([]);
     const [select,setSelect]=useState([]);
+    
     useEffect(()=>{
         if(item.todoModel!==null){
             setTodo(item.todoModel)
         }
+        
     },[])
     const deleteListCall=(id)=>{
         deleteList(id,list,setList)
@@ -65,7 +67,9 @@ function ViewList({item}) {
             {
                 todo.map((item,index)=>{
                     return(
+                        <Fragment key={index}>
                         <ViewTodo item={item} todo={todo} setTodo={setTodo} editSelectTodoCall={editSelectTodoCall}></ViewTodo>
+                        </Fragment>
                     )
                 })
             }
