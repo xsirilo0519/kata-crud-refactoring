@@ -2,12 +2,13 @@ import React,{useContext,useEffect,useState} from 'react';
 import {deleteList} from '../Controller/ListController'
 import {listContext} from '../Context/context'
 import ViewTodo from './ViewTodo';
-import { addTodo } from '../Controller/TodoController';
+import { addTodo, editTodo } from '../Controller/TodoController';
 
 function ViewList({item}) {
     const {list,setList}=useContext(listContext);
     const [input,setInput]=useState("");
     const [todo,setTodo]=useState([]);
+    const [select,setSelect]=useState([]);
     useEffect(()=>{
         if(item.todoModel!==null){
             setTodo(item.todoModel)
@@ -18,12 +19,28 @@ function ViewList({item}) {
     }
 
     const addTodoCall=()=>{
+        if(input!==""&&input[0]!==" "){
         addTodo(input,todo,setTodo,item.id)
+        }
         setInput("")
     }
 
     const editSelectTodoCall=(item)=>{
-        console.log(item);
+        setSelect(item)
+        setInput(item.name)
+    }
+    const editTodoCall=()=>{
+        if(input!==""&&input[0]!==" "){
+            const request={
+                name:input,
+                completed: select.completed,
+                id_list:select.id_list,
+                id: select.id
+            }
+            editTodo(request,todo,setTodo)
+            setSelect([])
+        }
+        setInput("")
     }
 
     return (
@@ -32,7 +49,7 @@ function ViewList({item}) {
             <button onClick={()=>{deleteListCall(item.id)}}>Eliminar</button>
             <br/>
             <input type="text" value={input} onChange={(e)=>{setInput(e.target.value)}} />
-            <button onClick={addTodoCall}>Agregar</button>
+            {select.length!==0?<button onClick={editTodoCall}>Editar</button>:<button onClick={addTodoCall}>Agregar</button>}
             <br/>
       <table>
         <thead>

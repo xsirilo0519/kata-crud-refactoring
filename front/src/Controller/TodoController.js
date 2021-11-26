@@ -20,9 +20,9 @@ export const addTodo=async(input,todo,setTodo,id)=>{
 
 export const editTodo=async(todoModel,todo,setTodo)=>{
     const aux= await axios.put(HOST_API_TODO+"/todo",todoModel).then(res=>{ return res.data})
-    const todolist=todo.filter(x=>x.id!==todoModel.id)
-    console.log(todolist);
-    console.log(aux);
-    setTodo([...todolist,aux])
+    let todolist=todo.filter(x=>x.id!==todoModel.id)
+    todolist=[...todolist,aux]
+   todolist.sort((x,y)=>x.id-y.id);
+    setTodo(todolist.sort((x,y)=>x.id-y.id))
     console.log("puttodo");
 }
