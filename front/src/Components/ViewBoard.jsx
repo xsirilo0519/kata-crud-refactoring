@@ -25,7 +25,7 @@ function ViewBoard(props) {
 
     return (
         <div className="contenedor">
-            <p>Broard</p>
+            <p style={{fontWeight: 500}}>DashBroard</p>
             <div className="contendeor-bt-input">
             <input type="text" placeholder="Lista de TO-DO" value={input} onChange={(e)=>{setInput(e.target.value)}} />
             <li  style={{ backgroundImage: "url(" + add + ")" }} onClick={addListCall}></li>

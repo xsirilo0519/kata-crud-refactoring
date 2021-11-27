@@ -62,7 +62,7 @@ function ViewList({item}) {
             <li className="li-short" style={{ backgroundImage: "url(" + close + ")" }} onClick={()=>{deleteListCall(item.id)}}></li>
             </div>
             <div className="contenedor-li-p">
-            <input type="text" value={input} onChange={(e)=>{setInput(e.target.value)}} />
+            <input type="text" placeholder="¿Que piensas hacer?" value={input} onChange={(e)=>{setInput(e.target.value)}} />
             {select.length!==0?<li style={{ backgroundImage: "url(" + edit + ")" }} onClick={editTodoCall}></li>:<li style={{ backgroundImage: "url(" + add + ")" }}onClick={addTodoCall}></li>}
             </div>
             <span>{msg}</span>
@@ -73,8 +73,8 @@ function ViewList({item}) {
             <td>ID</td>
             <td>Nombre</td>
             <td>¿Completo?</td>
-            <td></td>
-            <td></td>
+            <td> Eliminar</td>
+            <td> Editar</td>
           </tr>
         </thead>
         <tbody>
