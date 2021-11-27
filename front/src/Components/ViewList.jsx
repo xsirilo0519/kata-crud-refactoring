@@ -1,8 +1,11 @@
 import React,{Fragment, useContext,useEffect,useState} from 'react';
-import {deleteList, getList} from '../Controller/ListController'
+import {deleteList} from '../Controller/ListController'
 import {listContext} from '../Context/context'
 import ViewTodo from './ViewTodo';
 import { addTodo, editTodo } from '../Controller/TodoController';
+import close from '../assets/close.png';
+import edit from '../assets/pencil.png';
+import add from '../assets/add.png';
 
 function ViewList({item}) {
     const {list,setList}=useContext(listContext);
@@ -13,11 +16,11 @@ function ViewList({item}) {
     useEffect(()=>{
         setTodo(item.todoModel)
 
-    },[])
+    },[item.todoModel])
 
     const deleteListCall=(id)=>{
+        setTodo([])
         deleteList(id,list,setList)
-        getList(setList)
     }
 
     const addTodoCall=()=>{
@@ -44,14 +47,17 @@ function ViewList({item}) {
     }
 
     return (
-        <div>
-            {item.name} 
-            <button onClick={()=>{deleteListCall(item.id)}}>Eliminar</button>
-            <br/>
+        <div className="contenedor-list">
+            <div className="contenedor-li-p">
+            <p>{item.name} </p>
+            <li className="li-short" style={{ backgroundImage: "url(" + close + ")" }} onClick={()=>{deleteListCall(item.id)}}></li>
+            </div>
+            <div className="contenedor-li-p">
             <input type="text" value={input} onChange={(e)=>{setInput(e.target.value)}} />
-            {select.length!==0?<button onClick={editTodoCall}>Editar</button>:<button onClick={addTodoCall}>Agregar</button>}
+            {select.length!==0?<li style={{ backgroundImage: "url(" + edit + ")" }} onClick={editTodoCall}></li>:<li style={{ backgroundImage: "url(" + add + ")" }}onClick={addTodoCall}></li>}
+            </div>
             <br/>
-      <table>
+      <table style={{width:"500px"}}>
         <thead>
           <tr>
             <td>ID</td>
@@ -66,7 +72,7 @@ function ViewList({item}) {
                 todo.map((item)=>{
                     return(
                         <Fragment key={item.id}>
-                        <ViewTodo item={item} todo={todo} setTodo={setTodo} editSelectTodoCall={editSelectTodoCall}></ViewTodo>
+                        <ViewTodo item={item} todo={todo} setTodo={setTodo} editSelectTodoCall={editSelectTodoCall} isEdit={select}></ViewTodo>
                         </Fragment>
                     )
                 })

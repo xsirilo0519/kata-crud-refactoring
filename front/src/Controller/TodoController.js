@@ -24,7 +24,7 @@ export const editTodo=async(todoModel,todo,setTodo)=>{
     const aux= await axios.put(HOST_API_TODO+"/todo",todoModel).then(res=>{ return res.data})
     let todolist=todo.filter(x=>x.id!==todoModel.id)
     todolist=[...todolist,aux]
-   todolist.sort((x,y)=>x.id-y.id);
+    todolist.sort((x,y)=>x.id-y.id);
     setTodo(todolist.sort((x,y)=>x.id-y.id))
     console.log("puttodo");
 }

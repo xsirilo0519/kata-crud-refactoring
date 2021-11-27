@@ -21,7 +21,7 @@ public class TodoController {
         if(todoDTO.getId() != null){
             return service.save(todoDTO);
         }
-        throw new RuntimeException("No existe el id para actualziar");
+        return null;
     }
 
     @DeleteMapping(value = "/{id}/todo")

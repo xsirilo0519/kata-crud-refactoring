@@ -2,15 +2,15 @@ import React, { Fragment, useEffect, useState,useContext } from 'react';
 import {getList,addList} from '../Controller/ListController'
 import ViewList from './ViewList';
 import {listContext} from '../Context/context'
+import add from '../assets/add.png'
 
 function ViewBoard(props) {
     const {list,setList}=useContext(listContext);
     const [input,setInput]=useState("");
-    //const [list, setList]=useState([]);
 
     useEffect(()=>{
     getList(setList)
-    },[])
+    },[setList])
 
     const addListCall=()=>{
         if(input!==""&&input[0]!==" "){
@@ -20,10 +20,12 @@ function ViewBoard(props) {
     }
 
     return (
-        <div>
-            broard<br/>
-            <input type="text" value={input} onChange={(e)=>{setInput(e.target.value)}} />
-            <button onClick={addListCall}>Agregar</button>
+        <div className="contenedor">
+            <p>Broard</p>
+            <div className="contendeor-bt-input">
+            <input type="text" placeholder="Lista de TO-DO" value={input} onChange={(e)=>{setInput(e.target.value)}} />
+            <li  style={{ backgroundImage: "url(" + add + ")" }} onClick={addListCall}></li>
+            </div>
             <br/>
             {
                 list.map((item)=>{

@@ -15,6 +15,10 @@ public class TodoModel {
 
     public Long getId_list() {return id_list;}
 
+    public void setId_list(Long id_list) {
+        this.id_list = id_list;
+    }
+
     public Long getId() {
         return id;
     }
