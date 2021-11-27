@@ -2,7 +2,7 @@ import React from "react";
 import { deleteTodo, editTodo } from "../Controller/TodoController";
 import close from "../assets/close.png";
 import edit from "../assets/pencil.png";
-function ViewTodo({ item, todo, setTodo, editSelectTodoCall, isEdit }) {
+function ViewTodo({ item, todo, setTodo, editSelectTodoCall, isEdit,setMsg,msg }) {
   const onChange = (todoModel) => {
     const request = {
       id: todoModel.id,
@@ -16,6 +16,8 @@ function ViewTodo({ item, todo, setTodo, editSelectTodoCall, isEdit }) {
   const deleteTocoCall = (id) => {
     if (isEdit.id !== id) {
       deleteTodo(id, todo, setTodo);
+    }else{
+        setMsg("No puedes eliminar el elemento que estas editando")
     }
   };
 

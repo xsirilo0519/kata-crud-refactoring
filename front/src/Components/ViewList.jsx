@@ -12,6 +12,7 @@ function ViewList({item}) {
     const [input,setInput]=useState("");
     const [todo,setTodo]=useState([]);
     const [select,setSelect]=useState([]);
+    const [msg,setMsg]=useState("");
 
     useEffect(()=>{
         setTodo(item.todoModel)
@@ -24,7 +25,11 @@ function ViewList({item}) {
     }
 
     const addTodoCall=()=>{
+        if(input!==""&&input[0]!==" "){
         addTodo(input,todo,setTodo,item.id)
+        }else{
+            setMsg("Ingrese un texto que no tenga un espacio al inicio")
+        }
         setInput("")
     }
 
@@ -42,6 +47,10 @@ function ViewList({item}) {
             }
             editTodo(request,todo,setTodo)
             setSelect([])
+            setMsg("")
+        }
+        else{
+            setMsg("Ingrese un texto que no tenga un espacio al inicio")
         }
         setInput("")
     }
@@ -56,6 +65,7 @@ function ViewList({item}) {
             <input type="text" value={input} onChange={(e)=>{setInput(e.target.value)}} />
             {select.length!==0?<li style={{ backgroundImage: "url(" + edit + ")" }} onClick={editTodoCall}></li>:<li style={{ backgroundImage: "url(" + add + ")" }}onClick={addTodoCall}></li>}
             </div>
+            <span>{msg}</span>
             <br/>
       <table style={{width:"500px"}}>
         <thead>
@@ -72,7 +82,7 @@ function ViewList({item}) {
                 todo.map((item)=>{
                     return(
                         <Fragment key={item.id}>
-                        <ViewTodo item={item} todo={todo} setTodo={setTodo} editSelectTodoCall={editSelectTodoCall} isEdit={select}></ViewTodo>
+                        <ViewTodo item={item} todo={todo} setTodo={setTodo} editSelectTodoCall={editSelectTodoCall} isEdit={select} msg={msg} setMsg={setMsg}></ViewTodo>
                         </Fragment>
                     )
                 })

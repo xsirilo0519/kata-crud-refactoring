@@ -7,6 +7,7 @@ import add from '../assets/add.png'
 function ViewBoard(props) {
     const {list,setList}=useContext(listContext);
     const [input,setInput]=useState("");
+    const [msg,setMsg]=useState("");
 
     useEffect(()=>{
     getList(setList)
@@ -15,6 +16,9 @@ function ViewBoard(props) {
     const addListCall=()=>{
         if(input!==""&&input[0]!==" "){
             addList(input,list,setList)
+            setMsg("")
+        }else{
+            setMsg("Ingrese un texto que no tenga un espacio al inicio")
         }
         setInput("")
     }
@@ -26,6 +30,7 @@ function ViewBoard(props) {
             <input type="text" placeholder="Lista de TO-DO" value={input} onChange={(e)=>{setInput(e.target.value)}} />
             <li  style={{ backgroundImage: "url(" + add + ")" }} onClick={addListCall}></li>
             </div>
+            <span>{msg}</span>
             <br/>
             {
                 list.map((item)=>{

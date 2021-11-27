@@ -38,6 +38,11 @@ li:hover{
     padding: 10px;
 }
 
+span {
+    color: red;
+    margin-left: 10px;
+}
+
 .contenedor-li-p{
     display: flex;
 }
